@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Видеограф Дубна | Кинематографичный продакшн</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --accent-red: #DC2626;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Эффект кинопленки (перфорация) */
+        .film-strip {
+            position: relative;
+            border: 2px solid #000;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .film-strip::before, .film-strip::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 16px;
+            background-image: radial-gradient(circle, #000 35%, transparent 40%);
+            background-size: 24px 100%;
+            background-repeat: repeat-x;
+        }
+        .film-strip::before { top: 8px; }
+        .film-strip::after { bottom: 8px; }
+
+        /* Тонкие рамки для карточек */
+        .thin-border {
+            border: 1px solid #000;
+            transition: all 0.3s ease;
+        }
+        .thin-border:hover {
+            box-shadow: 6px 6px 0px var(--accent-red);
+            transform: translate(-2px, -2px);
+        }
+
+        /* Анимация появления */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red);
+        }
+
+        .outline-text {
+            -webkit-text-stroke: 1px black;
+            color: transparent;
+        }
+
+        /* Декоративные элементы */
+        .bg-pattern {
+            background-image: radial-gradient(#eee 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-pattern">
+
+    <!-- Навигация -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-black tracking-tighter uppercase italic">
+                DUBNA<span class="text-red-600">POV</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Обо мне</a>
+                <a href="#services" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Услуги</a>
+                <a href="#places" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Дубна</a>
+                <a href="#portfolio" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Работы</a>
+                <a href="#contact" class="bg-black text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-red-600 transition-all">Связаться</a>
+            </div>
+            <button class="md:hidden" id="menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Мобильное меню -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center space-y-8 hidden">
+        <button id="close-menu" class="absolute top-8 right-8"><i data-lucide="x" size="32"></i></button>
+        <a href="#about" class="text-3xl font-black uppercase italic">Обо мне</a>
+        <a href="#services" class="text-3xl font-black uppercase italic">Услуги</a>
+        <a href="#places" class="text-3xl font-black uppercase italic">Дубна</a>
+        <a href="#portfolio" class="text-3xl font-black uppercase italic">Работы</a>
+        <a href="#contact" class="text-3xl font-black uppercase italic text-red-600">Связаться</a>
+    </div>
+
+    <!-- Hero -->
+    <header class="min-h-screen flex items-center px-6 pt-20">
+        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <div class="flex items-center space-x-4 mb-6">
+                    <span class="h-px w-12 bg-red-600"></span>
+                    <span class="text-sm font-bold uppercase tracking-widest text-red-600">Cinematographer & Editor</span>
+                </div>
+                <h1 class="text-6xl md:text-[100px] font-black uppercase leading-[0.9] tracking-tighter mb-8 italic">
+                    ТВОЯ ИСТОРИЯ <br>
+                    <span class="outline-text">В КАЖДОМ</span> <br>
+                    КАДРЕ<span class="text-red-600">.</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-md mb-10 font-medium">
+                    Профессиональная видеосъемка в Дубне. Сохраняю моменты, которые оживают на экране.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#portfolio" class="bg-black text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-red-600 transition-all">Смотреть работы</a>
+                </div>
+            </div>
+            <div class="relative reveal delay-200">
+                <div class="film-strip rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800" alt="Videographer" class="grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="absolute -bottom-12 -left-12 opacity-10 hidden xl:block">
+                    <i data-lucide="camera" size="200" stroke-width="0.5"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="py-32 px-6 bg-white border-t-2 border-b-2 border-black">
+        <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="grid grid-cols-2 gap-4 reveal">
+                <div class="thin-border p-2">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=400" alt="GoPro" class="grayscale">
+                </div>
+                <div class="thin-border p-2 mt-8">
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=400" alt="Camera Gear">
+                </div>
+            </div>
+            <div class="reveal delay-200">
+                <h2 class="text-5xl font-black uppercase italic mb-8">ОТ <span class="text-red-600 underline">GOPRO</span> ДО КИНО</h2>
+                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
+                    <p>Все началось с поездок в горы и желания запечатлеть драйв. Моя первая GoPro стала билетом в мир видео. Жажда скорости и адреналина превратилась в любовь к выверенным кадрам и идеальному монтажу.</p>
+                    <p>Сегодня я — дипломированный специалист, использующий топовое оборудование Sony и Cinema-линзы. Мои навыки: сложный саунд-дизайн, авторская цветокоррекция и сторителлинг.</p>
+                </div>
+                <div class="mt-12 flex gap-10">
+                    <div>
+                        <p class="text-4xl font-black italic">8+</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Лет практики</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl font-black italic">200+</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Проектов</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-32 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-5xl font-black uppercase italic mb-16 text-center">УСЛУГИ <span class="text-red-600">&</span> ПРАЙС</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="film-strip hover:bg-black hover:text-white transition-all group reveal">
+                    <div class="mb-6 text-red-600"><i data-lucide="video" size="40"></i></div>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">REELS / SHORTS</h3>
+                    <p class="text-4xl font-black mb-6">ОТ 10 000 ₽</p>
+                    <ul class="space-y-3 mb-10 text-sm font-bold uppercase tracking-wider opacity-70">
+                        <li>— Сценарий и идеи</li>
+                        <li>— Монтаж под тренды</li>
+                        <li>— Цветокоррекция</li>
+                        <li>— Подбор музыки</li>
+                    </ul>
+                    <a href="#contact" class="block text-center border-2 border-black group-hover:border-white py-4 font-bold uppercase tracking-widest hover:bg-red-600 hover:border-red-600 transition-all">Заказать</a>
+                </div>
+                <!-- Card 2 -->
+                <div class="film-strip hover:bg-black hover:text-white transition-all group reveal delay-100">
+                    <div class="mb-6 text-red-600"><i data-lucide="film" size="40"></i></div>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">КОММЕРЦИЯ</h3>
+                    <p class="text-4xl font-black mb-6">ОТ 25 000 ₽</p>
+                    <ul class="space-y-3 mb-10 text-sm font-bold uppercase tracking-wider opacity-70">
+                        <li>— Реклама бизнеса</li>
+                        <li>— Интервью / Репортаж</li>
+                        <li>— 4K Качество</li>
+                        <li>— Аэросъемка</li>
+                    </ul>
+                    <a href="#contact" class="block text-center border-2 border-black group-hover:border-white py-4 font-bold uppercase tracking-widest hover:bg-red-600 hover:border-red-600 transition-all">Заказать</a>
+                </div>
+                <!-- Card 3 -->
+                <div class="film-strip hover:bg-black hover:text-white transition-all group reveal delay-200">
+                    <div class="mb-6 text-red-600"><i data-lucide="award" size="40"></i></div>
+                    <h3 class="text-2xl font-black uppercase italic mb-4">LOVE STORY</h3>
+                    <p class="text-4xl font-black mb-6">ОТ 40 000 ₽</p>
+                    <ul class="space-y-3 mb-10 text-sm font-bold uppercase tracking-wider opacity-70">
+                        <li>— Кино о вашей паре</li>
+                        <li>— Помощь с локациями</li>
+                        <li>— Саунд-дизайн</li>
+                        <li>— Быстрые анонсы</li>
+                    </ul>
+                    <a href="#contact" class="block text-center border-2 border-black group-hover:border-white py-4 font-bold uppercase tracking-widest hover:bg-red-600 hover:border-red-600 transition-all">Заказать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="py-32 bg-black text-white px-6">
+        <div class="container mx-auto">
+            <h2 class="text-5xl font-black uppercase italic mb-20">ЭТАПЫ <span class="text-red-600">РАБОТЫ</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="reveal">
+                    <span class="text-6xl font-black text-red-600 italic">01</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2">БРИФИНГ</h4>
+                    <p class="text-gray-400 text-sm">Обсуждаем цели, референсы и бюджет. Рисуем мудборд.</p>
+                </div>
+                <div class="reveal delay-100">
+                    <span class="text-6xl font-black text-red-600 italic">02</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2">ПОДГОТОВКА</h4>
+                    <p class="text-gray-400 text-sm">Локации, актеры, тайминг. Продумываем каждый кадр.</p>
+                </div>
+                <div class="reveal delay-200">
+                    <span class="text-6xl font-black text-red-600 italic">03</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2">СЪЕМКА</h4>
+                    <p class="text-gray-400 text-sm">Магия на площадке. Работаем до идеального дубля.</p>
+                </div>
+                <div class="reveal delay-300">
+                    <span class="text-6xl font-black text-red-600 italic">04</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2">МОНТАЖ</h4>
+                    <p class="text-gray-400 text-sm">Сборка истории, цвет, звук. Финализация проекта.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Places in Dubna -->
+    <section id="places" class="py-32 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-black uppercase italic mb-4">ЛОКАЦИИ <span class="text-red-600">ДУБНЫ</span></h2>
+                <p class="text-gray-500 font-bold uppercase tracking-widest text-xs italic">Где мы создаем магию</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="relative group overflow-hidden thin-border reveal">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=600" alt="Volga" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-8 text-white">
+                        <div class="text-center">
+                            <h4 class="text-xl font-black uppercase italic mb-2">Набережная Волги</h4>
+                            <p class="text-xs font-medium uppercase tracking-widest">Идеальный свет во время заката.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden thin-border reveal delay-100">
+                    <img src="https://images.unsplash.com/photo-1518173946687-a4c8a98039f5?auto=format&fit=crop&q=80&w=600" alt="Chair" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-8 text-white">
+                        <div class="text-center">
+                            <h4 class="text-xl font-black uppercase italic mb-2">Большой Стул</h4>
+                            <p class="text-xs font-medium uppercase tracking-widest">Масштабный арт-объект для креатива.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden thin-border reveal delay-200">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600" alt="Forest" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-8 text-white">
+                        <div class="text-center">
+                            <h4 class="text-xl font-black uppercase italic mb-2">Островные леса</h4>
+                            <p class="text-xs font-medium uppercase tracking-widest">Атмосфера таинственности и природы.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="py-32 px-6 bg-zinc-50 border-t-2 border-black">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl font-black uppercase italic mb-12 text-center">СОВЕТЫ ПЕРЕД <span class="text-red-600">СЪЕМКОЙ</span></h2>
+            <div class="space-y-8">
+                <div class="flex gap-6 items-start reveal">
+                    <div class="p-3 bg-black text-white"><i data-lucide="zap"></i></div>
+                    <div>
+                        <h4 class="text-xl font-black uppercase italic">Гардероб</h4>
+                        <p class="text-gray-600 mt-2">Выбирайте однотонную одежду спокойных тонов. Избегайте мелкой клетки и логотипов — они 'рябят' в кадре.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start reveal">
+                    <div class="p-3 bg-black text-white"><i data-lucide="clock"></i></div>
+                    <div>
+                        <h4 class="text-xl font-black uppercase italic">Тайминг</h4>
+                        <p class="text-gray-600 mt-2">Рассчитывайте время. 'Золотой час' перед закатом дает самый мягкий и киношный свет.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start reveal">
+                    <div class="p-3 bg-black text-white"><i data-lucide="user"></i></div>
+                    <div>
+                        <h4 class="text-xl font-black uppercase italic">Настрой</h4>
+                        <p class="text-gray-600 mt-2">Расслабьтесь. Моя работа — поймать вашу искренность. Главное — ваше доверие процессу.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-32 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-5xl font-black uppercase italic mb-16 italic leading-none">ИЗБРАННОЕ<span class="text-red-600">.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="thin-border p-2 reveal group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="https://images.unsplash.com/photo-1512070801638-30119f96726c?auto=format&fit=crop&q=80&w=800" alt="Work 1" class="w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                            <i data-lucide="play" class="text-white fill-white" size="48"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center">
+                        <h4 class="font-black uppercase italic">SUMMER FEST / COMM</h4>
+                        <span class="text-xs font-bold text-gray-400">2024</span>
+                    </div>
+                </div>
+                <div class="thin-border p-2 reveal delay-100 group cursor-pointer">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=800" alt="Work 2" class="w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
+                            <i data-lucide="play" class="text-white fill-white" size="48"></i>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center">
+                        <h4 class="font-black uppercase italic">WILD NATURE / PERS</h4>
+                        <span class="text-xs font-bold text-gray-400">2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-32 bg-black text-white px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+            <i data-lucide="video" size="400" stroke-width="0.5"></i>
+        </div>
+        <div class="container mx-auto relative z-10">
+            <h2 class="text-5xl font-black uppercase italic mb-16 text-center underline decoration-red-600 underline-offset-8">ОТЗЫВЫ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="reveal">
+                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
+                    <p class="text-lg italic mb-6">"Видео со свадьбы пересматриваем каждую неделю. Такое ощущение, что это фильм из Netflix. Спасибо!"</p>
+                    <h5 class="font-black uppercase tracking-widest text-sm">— Анна и Игорь</h5>
+                </div>
+                <div class="reveal delay-100">
+                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
+                    <p class="text-lg italic mb-6">"Очень четкая работа по ТЗ. Ролик для кофейни привел новых клиентов уже через день после публикации."</p>
+                    <h5 class="font-black uppercase tracking-widest text-sm">— Владелец 'Zerno'</h5>
+                </div>
+                <div class="reveal delay-200">
+                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
+                    <p class="text-lg italic mb-6">"Съемка прошла на одном дыхании. Даже не заметили камеру, а результат просто поразил!"</p>
+                    <h5 class="font-black uppercase tracking-widest text-sm">— Дарья Р.</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Form -->
+    <section id="contact" class="py-32 px-6 bg-white">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div class="reveal">
+                    <h2 class="text-6xl font-black uppercase italic mb-10 leading-tight">ГОТОВЫ <br> <span class="text-red-600">ОЖИВИТЬ</span> ИДЕЮ?</h2>
+                    <div class="space-y-6">
+                        <a href="tel:+79990000000" class="flex items-center gap-6 group">
+                            <div class="p-4 border border-black group-hover:bg-red-600 group-hover:border-red-600 transition-all"><i data-lucide="phone"></i></div>
+                            <span class="text-2xl font-black italic">+7 (999) 000-00-00</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-6 group">
+                            <div class="p-4 border border-black group-hover:bg-black group-hover:text-white transition-all"><i data-lucide="send"></i></div>
+                            <span class="text-2xl font-black italic">@dubnavision_prod</span>
+                        </a>
+                        <a href="mailto:hello@dubnavision.pro" class="flex items-center gap-6 group">
+                            <div class="p-4 border border-black group-hover:bg-zinc-100 transition-all"><i data-lucide="mail"></i></div>
+                            <span class="text-2xl font-black italic">hello@dubnavision.pro</span>
+                        </a>
+                    </div>
+                    <div class="mt-16 opacity-10 hidden lg:block">
+                        <img src="https://images.unsplash.com/photo-1492691523567-61723c275df1?auto=format&fit=crop&q=80&w=400" alt="Vintage Camera" class="grayscale">
+                    </div>
+                </div>
+                <div class="film-strip bg-zinc-50 reveal delay-200">
+                    <h3 class="text-3xl font-black uppercase italic mb-8">ОТПРАВИТЬ ЗАЯВКУ</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest mb-2">Ваше имя</label>
+                            <input type="text" placeholder="АЛЕКСАНДР" class="w-full bg-white border-b-2 border-black p-4 focus:border-red-600 outline-none font-bold uppercase text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest mb-2">Контакт (TG/Тел)</label>
+                            <input type="text" placeholder="@USERNAME" class="w-full bg-white border-b-2 border-black p-4 focus:border-red-600 outline-none font-bold uppercase text-sm transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-black uppercase tracking-widest mb-2">Тип съемки</label>
+                            <select class="w-full bg-white border-b-2 border-black p-4 focus:border-red-600 outline-none font-bold uppercase text-sm transition-colors appearance-none cursor-pointer">
+                                <option>РЕКЛАМА / КОММЕРЦИЯ</option>
+                                <option>REELS / SHORTS ПАКЕТ</option>
+                                <option>LOVE STORY</option>
+                                <option>ДРУГОЕ</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full bg-black text-white py-6 font-black uppercase tracking-[0.3em] hover:bg-red-600 transition-all shadow-[6px_6px_0px_0px_rgba(220,38,38,1)] active:translate-y-2 active:shadow-none">
+                            ОТПРАВИТЬ СВЕТ
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t-2 border-black px-6 bg-white">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="flex flex-col items-center md:items-start">
+                <a href="#" class="text-3xl font-black tracking-tighter uppercase italic mb-4">
+                    DUBNA<span class="text-red-600">POV</span>
+                </a>
+                <p class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 italic">© 2024. ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" class="font-black uppercase tracking-widest text-sm hover:text-red-600 transition-colors">INST</a>
+                <a href="#" class="font-black uppercase tracking-widest text-sm hover:text-red-600 transition-colors">VIMEO</a>
+                <a href="#" class="font-black uppercase tracking-widest text-sm hover:text-red-600 transition-colors">TG</a>
+            </div>
+            <div class="text-right hidden md:block">
+                <p class="text-xs font-bold uppercase tracking-widest italic leading-loose">
+                    СЪЕМКИ В ДУБНЕ, МОСКВЕ <br> И ПО ВСЕЙ ПЛАНЕТЕ
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Инициализация иконок
+        lucide.createIcons();
+
+        // Липкая навигация
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'border-b-2', 'border-black', 'py-4');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white', 'border-b-2', 'border-black', 'py-4');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // Мобильное меню
+        const menuBtn = document.getElementById('menu-btn');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Анимация при скролле
+        const reveals = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+    </script>
+</body>
+</html>
