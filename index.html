@@ -14,6 +14,7 @@
     <style>
         :root {
             --accent-red: #DC2626;
+            --accent-red-dark: #b91c1c;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -44,25 +45,132 @@
         .film-strip::before { top: 8px; }
         .film-strip::after { bottom: 8px; }
 
-        /* Тонкие рамки для карточек */
+        /* Тонкие рамки для карточек с тенью */
         .thin-border {
             border: 1px solid #000;
             transition: all 0.3s ease;
         }
         .thin-border:hover {
-            box-shadow: 6px 6px 0px var(--accent-red);
-            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--accent-red), 10px 10px 20px rgba(0,0,0,0.15);
+            transform: translate(-3px, -3px);
         }
 
-        /* Анимация появления */
+        /* Улучшенная тень при наведении */
+        .hover-shadow:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Градиентный текст */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-red), #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Градиентные кнопки */
+        .btn-gradient {
+            background: linear-gradient(135deg, #000, #333);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Bounce эффект для кнопок */
+        .btn-bounce:active {
+            animation: bounce 0.3s ease;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Pulse анимация */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+
+        /* Параллакс эффект */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Ускоренная анимация появления */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transition: all 0.5s ease-out;
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Fade-in анимация */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Progress bar при скролле */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            z-index: 9999;
+            background: transparent;
+        }
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-red), #ff6b6b);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Back to top кнопка */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #000, #333);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-red-dark));
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
         }
 
         /* Кастомный скроллбар */
@@ -74,6 +182,7 @@
         }
         ::-webkit-scrollbar-thumb {
             background: #000;
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: var(--accent-red);
@@ -89,9 +198,82 @@
             background-image: radial-gradient(#eee 1px, transparent 1px);
             background-size: 20px 20px;
         }
+
+        /* Hover glow эффект */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Scale эффект */
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        /* Lightbox стили */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .lightbox-close:hover {
+            color: var(--accent-red);
+        }
+
+        /* Micro-interactions для форм */
+        .input-focus:focus {
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+        }
+
+        /* Touch-friendly кнопки */
+        .touch-btn {
+            min-height: 48px;
+            min-width: 48px;
+        }
     </style>
 </head>
 <body class="bg-pattern">
+    
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Наверх">
+        <i data-lucide="arrow-up" size="24"></i>
+    </button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="" alt="Lightbox" id="lightboxImg">
+    </div>
 
     <!-- Навигация -->
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
@@ -288,7 +470,7 @@
                     </div>
                 </div>
                 <div class="relative group overflow-hidden thin-border reveal delay-200">
-                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600" alt="Forest" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600" alt="Forest" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" loading="lazy">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-8 text-white">
                         <div class="text-center">
                             <h4 class="text-xl font-black uppercase italic mb-2">Островные леса</h4>
@@ -469,6 +651,97 @@
         // Инициализация иконок
         lucide.createIcons();
 
+        // ==================== PROGRESS BAR ====================
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            progressBar.style.width = scrolled + '%';
+        });
+
+        // ==================== BACK TO TOP ====================
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==================== LIGHTBOX ====================
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        
+        document.querySelectorAll('img').forEach(img => {
+            if (!img.closest('.film-strip') && !img.closest('button')) {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', () => {
+                    if (img.src) {
+                        lightboxImg.src = img.src;
+                        lightbox.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            }
+        });
+        
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ==================== LAZY LOADING ====================
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        img.classList.add('fade-in');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        // ==================== SCROLL ANIMATIONS ====================
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // ==================== PARALLAX EFFECT ====================
+        const parallaxElements = document.querySelectorAll('.parallax');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.backgroundPositionY = (scrolled * speed) + 'px';
+            });
+        });
+
         // Липкая навигация
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
@@ -503,22 +776,21 @@
             });
         });
 
-        // Анимация при скролле
-        const reveals = document.querySelectorAll('.reveal');
-        const observerOptions = {
-            threshold: 0.15
-        };
+        // ==================== FORM INPUT ANIMATIONS ====================
+        document.querySelectorAll('input, select, textarea').forEach(input => {
+            input.classList.add('input-focus');
+        });
 
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+        // ==================== BUTTON INTERACTIONS ====================
+        document.querySelectorAll('button[type="submit"]').forEach(btn => {
+            btn.classList.add('btn-bounce', 'btn-gradient');
+        });
 
-        reveals.forEach(reveal => revealObserver.observe(reveal));
+        // ==================== CTA PULSE ====================
+        const ctaButton = document.querySelector('a[href="#portfolio"]');
+        if (ctaButton) {
+            ctaButton.classList.add('pulse');
+        }
     </script>
 </body>
 </html>
