@@ -36,9 +36,9 @@
             position: absolute;
             left: 0;
             right: 0;
-            height: 16px;
-            background-image: radial-gradient(circle, #000 35%, transparent 40%);
-            background-size: 24px 100%;
+            height: 8px;
+            background-image: linear-gradient(90deg, #000 8px, transparent 8px, transparent 20px, #000 20px);
+            background-size: 28px 100%;
             background-repeat: repeat-x;
         }
         .film-strip::before { top: 8px; }
@@ -97,7 +97,7 @@
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <a href="#" class="text-2xl font-black tracking-tighter uppercase italic">
-                DUBNA<span class="text-red-600">POV</span>
+                DUBNA CINEMA
             </a>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#about" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Обо мне</a>
@@ -130,7 +130,7 @@
                     <span class="h-px w-12 bg-red-600"></span>
                     <span class="text-sm font-bold uppercase tracking-widest text-red-600">Cinematographer & Editor</span>
                 </div>
-                <h1 class="text-6xl md:text-[100px] font-black uppercase leading-[0.9] tracking-tighter mb-8 italic">
+                <h1 class="text-5xl md:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-8 italic">
                     ТВОЯ ИСТОРИЯ <br>
                     <span class="outline-text">В ОБЪЕКТИВЕ</span> <br>
                     КАМЕРЫ<span class="text-red-600">.</span>
@@ -158,10 +158,10 @@
         <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div class="grid grid-cols-2 gap-4 reveal">
                 <div class="thin-border p-2">
-                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=400" alt="GoPro" class="grayscale">
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=400" alt="GoPro" class="w-full h-48 object-cover grayscale">
                 </div>
-                <div class="thin-border p-2 mt-8">
-                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=400" alt="Camera Gear">
+                <div class="thin-border p-2">
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=400" alt="Camera Gear" class="w-full h-48 object-cover grayscale">
                 </div>
             </div>
             <div class="reveal delay-200">
@@ -237,25 +237,25 @@
         <div class="container mx-auto">
             <h2 class="text-5xl font-black uppercase italic mb-20">ЭТАПЫ <span class="text-red-600">РАБОТЫ</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div class="reveal">
-                    <span class="text-6xl font-black text-red-600 italic">01</span>
-                    <h4 class="text-xl font-black uppercase mt-4 mb-2">БРИФИНГ</h4>
-                    <p class="text-gray-400 text-sm">Обсуждаем цели, референсы и бюджет. Рисуем мудборд.</p>
+                <div class="reveal thin-border group p-6 hover:bg-gray-900 transition-all duration-300 cursor-default">
+                    <span class="text-6xl font-black text-red-600 italic group-hover:scale-110 transition-transform duration-300">01</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2 group-hover:text-red-500 transition-colors duration-300">БРИФИНГ</h4>
+                    <p class="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">Обсуждаем цели, референсы и бюджет. Рисуем мудборд.</p>
                 </div>
-                <div class="reveal delay-100">
-                    <span class="text-6xl font-black text-red-600 italic">02</span>
-                    <h4 class="text-xl font-black uppercase mt-4 mb-2">ПОДГОТОВКА</h4>
-                    <p class="text-gray-400 text-sm">Локации, актеры, тайминг. Продумываем каждый кадр.</p>
+                <div class="reveal delay-100 thin-border group p-6 hover:bg-gray-900 transition-all duration-300 cursor-default">
+                    <span class="text-6xl font-black text-red-600 italic group-hover:scale-110 transition-transform duration-300">02</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2 group-hover:text-red-500 transition-colors duration-300">ПОДГОТОВКА</h4>
+                    <p class="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">Локации, актеры, тайминг. Продумываем каждый кадр.</p>
                 </div>
-                <div class="reveal delay-200">
-                    <span class="text-6xl font-black text-red-600 italic">03</span>
-                    <h4 class="text-xl font-black uppercase mt-4 mb-2">СЪЕМКА</h4>
-                    <p class="text-gray-400 text-sm">Магия на площадке. Работаем до идеального дубля.</p>
+                <div class="reveal delay-200 thin-border group p-6 hover:bg-gray-900 transition-all duration-300 cursor-default">
+                    <span class="text-6xl font-black text-red-600 italic group-hover:scale-110 transition-transform duration-300">03</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2 group-hover:text-red-500 transition-colors duration-300">СЪЕМКА</h4>
+                    <p class="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">Магия на площадке. Работаем до идеального дубля.</p>
                 </div>
-                <div class="reveal delay-300">
-                    <span class="text-6xl font-black text-red-600 italic">04</span>
-                    <h4 class="text-xl font-black uppercase mt-4 mb-2">МОНТАЖ</h4>
-                    <p class="text-gray-400 text-sm">Сборка истории, цвет, звук. Финализация проекта.</p>
+                <div class="reveal delay-300 thin-border group p-6 hover:bg-gray-900 transition-all duration-300 cursor-default">
+                    <span class="text-6xl font-black text-red-600 italic group-hover:scale-110 transition-transform duration-300">04</span>
+                    <h4 class="text-xl font-black uppercase mt-4 mb-2 group-hover:text-red-500 transition-colors duration-300">МОНТАЖ</h4>
+                    <p class="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">Сборка истории, цвет, звук. Финализация проекта.</p>
                 </div>
             </div>
         </div>
@@ -279,11 +279,11 @@
                     </div>
                 </div>
                 <div class="relative group overflow-hidden thin-border reveal delay-100">
-                    <img src="https://images.unsplash.com/photo-1518173946687-a4c8a98039f5?auto=format&fit=crop&q=80&w=600" alt="Chair" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                    <img src="https://images.unsplash.com/photo-1585152033252-63d97628137a?auto=format&fit=crop&q=80&w=600" alt="Памятник Ленину" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-8 text-white">
                         <div class="text-center">
-                            <h4 class="text-xl font-black uppercase italic mb-2">Большой Стул</h4>
-                            <p class="text-xs font-medium uppercase tracking-widest">Масштабный арт-объект для креатива.</p>
+                            <h4 class="text-xl font-black uppercase italic mb-2">Памятник Ленину</h4>
+                            <p class="text-xs font-medium uppercase tracking-widest">Исторический символ города.</p>
                         </div>
                     </div>
                 </div>
@@ -337,26 +337,26 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="thin-border p-2 reveal group cursor-pointer">
                     <div class="relative overflow-hidden aspect-video">
-                        <img src="https://images.unsplash.com/photo-1512070801638-30119f96726c?auto=format&fit=crop&q=80&w=800" alt="Work 1" class="w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" alt="Свадьба" class="w-full grayscale group-hover:grayscale-0 transition-all duration-500">
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                             <i data-lucide="play" class="text-white fill-white" size="48"></i>
                         </div>
                     </div>
                     <div class="p-4 flex justify-between items-center">
-                        <h4 class="font-black uppercase italic">SUMMER FEST / COMM</h4>
+                        <h4 class="font-black uppercase italic">СВАДЕБНЫЙ ФИЛЬМ</h4>
                         <span class="text-xs font-bold text-gray-400">2024</span>
                     </div>
                 </div>
                 <div class="thin-border p-2 reveal delay-100 group cursor-pointer">
                     <div class="relative overflow-hidden aspect-video">
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=800" alt="Work 2" class="w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?auto=format&fit=crop&q=80&w=800" alt="Детский праздник" class="w-full grayscale group-hover:grayscale-0 transition-all duration-500">
                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
                             <i data-lucide="play" class="text-white fill-white" size="48"></i>
                         </div>
                     </div>
                     <div class="p-4 flex justify-between items-center">
-                        <h4 class="font-black uppercase italic">WILD NATURE / PERS</h4>
-                        <span class="text-xs font-bold text-gray-400">2023</span>
+                        <h4 class="font-black uppercase italic">ДЕТСКИЙ ПРАЗДНИК</h4>
+                        <span class="text-xs font-bold text-gray-400">2024</span>
                     </div>
                 </div>
             </div>
@@ -448,7 +448,7 @@
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="flex flex-col items-center md:items-start">
                 <a href="#" class="text-3xl font-black tracking-tighter uppercase italic mb-4">
-                    DUBNA<span class="text-red-600">POV</span>
+                    DUBNA CINEMA
                 </a>
                 <p class="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400 italic">© 2024. ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
             </div>
