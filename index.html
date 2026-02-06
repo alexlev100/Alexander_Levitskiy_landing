@@ -173,6 +173,33 @@
             box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
         }
 
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #000;
+            padding: 12px 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 11px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .sticky-cta.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .sticky-cta:hover {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
         /* Кастомный скроллбар */
         ::-webkit-scrollbar {
             width: 8px;
@@ -255,6 +282,16 @@
             min-height: 48px;
             min-width: 48px;
         }
+
+        /* Reduce motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-pattern">
@@ -268,6 +305,9 @@
     <button class="back-to-top" id="backToTop" aria-label="Наверх">
         <i data-lucide="arrow-up" size="24"></i>
     </button>
+
+    <!-- Sticky CTA -->
+    <a href="#contact" class="sticky-cta" id="stickyCta">Получить расчет</a>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
@@ -287,6 +327,7 @@
                 <a href="#places" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Дубна</a>
                 <a href="#portfolio" class="text-xs font-bold uppercase tracking-widest hover:text-red-600 transition-colors">Работы</a>
                 <a href="#contact" class="bg-black text-white px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-red-600 transition-all">Связаться</a>
+                <a href="#contact" class="border-2 border-black px-5 py-2 text-xs font-black uppercase tracking-widest hover:bg-red-600 hover:border-red-600 hover:text-white transition-all">Получить расчет</a>
             </div>
             <button class="md:hidden" id="menu-btn">
                 <i data-lucide="menu"></i>
@@ -302,6 +343,7 @@
         <a href="#places" class="text-3xl font-black uppercase italic">Дубна</a>
         <a href="#portfolio" class="text-3xl font-black uppercase italic">Работы</a>
         <a href="#contact" class="text-3xl font-black uppercase italic text-red-600">Связаться</a>
+        <a href="#contact" class="text-3xl font-black uppercase italic">Получить расчет</a>
     </div>
 
     <!-- Hero -->
@@ -320,8 +362,32 @@
                 <p class="text-xl text-gray-600 max-w-md mb-10 font-medium">
                     Профессиональная видеосъемка в Дубне. Сохраняю моменты, которые оживают на экране.
                 </p>
-                <div class="flex gap-4">
+                <div class="flex flex-wrap gap-4 mb-10">
                     <a href="#portfolio" class="bg-black text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-red-600 transition-all">Смотреть работы</a>
+                    <a href="#contact" class="border-2 border-black px-10 py-4 font-bold uppercase tracking-widest hover:bg-red-600 hover:border-red-600 hover:text-white transition-all">Получить расчет</a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="flex items-start gap-3">
+                        <div class="p-2 bg-black text-white"><i data-lucide="clapperboard" size="20"></i></div>
+                        <div>
+                            <p class="text-xs font-black uppercase tracking-widest">Кино‑подход</p>
+                            <p class="text-sm text-gray-600">Сценарий и режиссура</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="p-2 bg-black text-white"><i data-lucide="palette" size="20"></i></div>
+                        <div>
+                            <p class="text-xs font-black uppercase tracking-widest">Цвет и звук</p>
+                            <p class="text-sm text-gray-600">Кино‑грейд и саунд</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="p-2 bg-black text-white"><i data-lucide="clock" size="20"></i></div>
+                        <div>
+                            <p class="text-xs font-black uppercase tracking-widest">Сроки</p>
+                            <p class="text-sm text-gray-600">План и дедлайны</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="relative reveal delay-200">
@@ -334,6 +400,28 @@
             </div>
         </div>
     </header>
+
+    <!-- Trust -->
+    <section class="py-16 px-6 bg-white border-b-2 border-black">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 items-center">
+            <div class="reveal">
+                <p class="text-xs font-black uppercase tracking-[0.3em] text-gray-400">ДОВЕРЯЮТ МНЕ</p>
+                <p class="text-3xl font-black italic mt-2">БРЕНДЫ & ЛЮДИ</p>
+            </div>
+            <div class="reveal text-center">
+                <p class="text-4xl font-black italic">8+</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Лет практики</p>
+            </div>
+            <div class="reveal text-center">
+                <p class="text-4xl font-black italic">200+</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Проектов</p>
+            </div>
+            <div class="reveal text-center">
+                <p class="text-4xl font-black italic">96%</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Повторных клиентов</p>
+            </div>
+        </div>
+    </section>
 
     <!-- About -->
     <section id="about" class="py-32 px-6 bg-white border-t-2 border-b-2 border-black">
@@ -482,6 +570,33 @@
         </div>
     </section>
 
+    <!-- Reviews -->
+    <section class="py-32 bg-black text-white px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+            <i data-lucide="video" size="400" stroke-width="0.5"></i>
+        </div>
+        <div class="container mx-auto relative z-10">
+            <h2 class="text-5xl font-black uppercase italic mb-16 text-center underline decoration-red-600 underline-offset-8">ОТЗЫВЫ</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="reveal">
+                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
+                    <p class="text-lg italic mb-6">"Видео со свадьбы пересматриваем каждую неделю. Такое ощущение, что это фильм из Netflix. Спасибо!"</p>
+                    <h5 class="font-black uppercase tracking-widest text-sm">— Анна и Игорь</h5>
+                </div>
+                <div class="reveal delay-100">
+                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
+                    <p class="text-lg italic mb-6">"Очень четкая работа по ТЗ. Ролик для кофейни привел новых клиентов уже через день после публикации."</p>
+                    <h5 class="font-black uppercase tracking-widest text-sm">— Владелец 'Zerno'</h5>
+                </div>
+                <div class="reveal delay-200">
+                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
+                    <p class="text-lg italic mb-6">"Съемка прошла на одном дыхании. Даже не заметили камеру, а результат просто поразил!"</p>
+                    <h5 class="font-black uppercase tracking-widest text-sm">— Дарья Р.</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Tips -->
     <section class="py-32 px-6 bg-zinc-50 border-t-2 border-black">
         <div class="container mx-auto max-w-4xl">
@@ -524,9 +639,13 @@
                             <i data-lucide="play" class="text-white fill-white" size="48"></i>
                         </div>
                     </div>
-                    <div class="p-4 flex justify-between items-center">
-                        <h4 class="font-black uppercase italic">СВАДЕБНЫЙ ФИЛЬМ</h4>
-                        <span class="text-xs font-bold text-gray-400">2024</span>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-black uppercase italic">СВАДЕБНЫЙ ФИЛЬМ</h4>
+                            <span class="text-xs font-bold text-gray-400">2024</span>
+                        </div>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Задача: кино о дне свадьбы</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Результат: 3‑минутный фильм + тизер</p>
                     </div>
                 </div>
                 <div class="thin-border p-2 reveal delay-100 group cursor-pointer">
@@ -536,37 +655,39 @@
                             <i data-lucide="play" class="text-white fill-white" size="48"></i>
                         </div>
                     </div>
-                    <div class="p-4 flex justify-between items-center">
-                        <h4 class="font-black uppercase italic">ДЕТСКИЙ ПРАЗДНИК</h4>
-                        <span class="text-xs font-bold text-gray-400">2024</span>
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-black uppercase italic">ДЕТСКИЙ ПРАЗДНИК</h4>
+                            <span class="text-xs font-bold text-gray-400">2024</span>
+                        </div>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Задача: динамичный семейный ролик</p>
+                        <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Результат: клип 60 сек + сторис</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews -->
-    <section class="py-32 bg-black text-white px-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 opacity-10 pointer-events-none">
-            <i data-lucide="video" size="400" stroke-width="0.5"></i>
-        </div>
-        <div class="container mx-auto relative z-10">
-            <h2 class="text-5xl font-black uppercase italic mb-16 text-center underline decoration-red-600 underline-offset-8">ОТЗЫВЫ</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="reveal">
-                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
-                    <p class="text-lg italic mb-6">"Видео со свадьбы пересматриваем каждую неделю. Такое ощущение, что это фильм из Netflix. Спасибо!"</p>
-                    <h5 class="font-black uppercase tracking-widest text-sm">— Анна и Игорь</h5>
+    <!-- FAQ -->
+    <section class="py-32 px-6 bg-white border-t-2 border-black">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-4xl font-black uppercase italic mb-12 text-center">ЧАСТЫЕ <span class="text-red-600">ВОПРОСЫ</span></h2>
+            <div class="space-y-6">
+                <div class="reveal thin-border p-6">
+                    <h4 class="text-xl font-black uppercase italic">Сколько длится съемка?</h4>
+                    <p class="text-gray-600 mt-2">Зависит от задачи: от 1–2 часов для коротких роликов до полного съемочного дня.</p>
                 </div>
-                <div class="reveal delay-100">
-                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
-                    <p class="text-lg italic mb-6">"Очень четкая работа по ТЗ. Ролик для кофейни привел новых клиентов уже через день после публикации."</p>
-                    <h5 class="font-black uppercase tracking-widest text-sm">— Владелец 'Zerno'</h5>
+                <div class="reveal thin-border p-6">
+                    <h4 class="text-xl font-black uppercase italic">Когда получу готовое видео?</h4>
+                    <p class="text-gray-600 mt-2">Черновой монтаж — через 5–10 дней, финальная версия — до 14 дней после правок.</p>
                 </div>
-                <div class="reveal delay-200">
-                    <div class="flex text-red-600 mb-4 italic">★★★★★</div>
-                    <p class="text-lg italic mb-6">"Съемка прошла на одном дыхании. Даже не заметили камеру, а результат просто поразил!"</p>
-                    <h5 class="font-black uppercase tracking-widest text-sm">— Дарья Р.</h5>
+                <div class="reveal thin-border p-6">
+                    <h4 class="text-xl font-black uppercase italic">Входят ли правки?</h4>
+                    <p class="text-gray-600 mt-2">Да, 1–2 раунда правок включены, чтобы довести ролик до идеала.</p>
+                </div>
+                <div class="reveal thin-border p-6">
+                    <h4 class="text-xl font-black uppercase italic">Как подготовиться к съемке?</h4>
+                    <p class="text-gray-600 mt-2">Подскажу по локациям, одежде, таймингу и настроению — это в моих интересах.</p>
                 </div>
             </div>
         </div>
@@ -661,11 +782,14 @@
 
         // ==================== BACK TO TOP ====================
         const backToTopBtn = document.getElementById('backToTop');
+        const stickyCta = document.getElementById('stickyCta');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 500) {
                 backToTopBtn.classList.add('visible');
+                stickyCta.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
+                stickyCta.classList.remove('visible');
             }
         });
         backToTopBtn.addEventListener('click', () => {
@@ -787,7 +911,7 @@
         });
 
         // ==================== CTA PULSE ====================
-        const ctaButton = document.querySelector('a[href="#portfolio"]');
+        const ctaButton = document.querySelector('a[href="#contact"]');
         if (ctaButton) {
             ctaButton.classList.add('pulse');
         }
